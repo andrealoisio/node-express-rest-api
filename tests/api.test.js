@@ -11,4 +11,13 @@ describe("Test the root path", () => {
                 done();
             });
     });
+    test("It should response the GET method on /ping endpoing", done => {
+        request(app)
+            .get("/ping")
+            .then(response => {
+                expect(response.statusCode).toBe(200);
+                expect(response.text).toBe("pong");
+                done();
+            });
+    });
 });

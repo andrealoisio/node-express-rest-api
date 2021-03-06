@@ -7,4 +7,9 @@ router.get('/', function(req, res, next) {
   res.json({mensagem: "OK"});
 });
 
+router.get('/ping', function(req, res, next) {
+  // res.json('index', { title: 'Express' });
+  res.send('pong')
+});
+
 module.exports = router;
