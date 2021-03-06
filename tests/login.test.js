@@ -11,4 +11,27 @@ describe("Test authentication process", () => {
                 done();
             });
     });
+    test("It should response an authorized message", done => {
+        request(app)
+            .post("/login")
+            .send({
+                user: "andrealoisio",
+                password: "password123@"
+            })
+            .then(response => {
+                expect(response.statusCode).toBe(200);
+                expect(response.body.auth).toBe(true);
+                done();
+            });
+    });
+    test("It should response with message: No token provied", done => {
+        request(app)
+            .get("/authenticated-ping")
+            .then(response => {
+                expect(response.statusCode).toBe(401);
+                expect(response.body.auth).toBe(false);
+                expect(response.body.message).toBe("No token provided.");
+                done();
+            });
+    });   
 });
